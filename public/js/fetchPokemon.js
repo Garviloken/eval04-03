@@ -4,7 +4,8 @@
  * @function fetchPokemon
  */
 
-const pokeP = document.createElement("p");
+const pokeP = document.getElementById("pokeInfo");
+// const pokeDiv = document.getElementById("pokemon-info");
 const pokeAbilityBtn = document.getElementById("ability");
 const fetchPokemon = async () => {
   // Générer un numéro de Pokédex aléatoire
