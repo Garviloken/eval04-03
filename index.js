@@ -1,7 +1,7 @@
-import express from 'express'; // Import du module Express
-import path from 'path'; // Import du module path pour la gestion des chemins de fichiers
-import { fileURLToPath } from 'url'; // Import du module url pour la conversion des URL en chemins de fichiers
-import cors from 'cors'; // Import du module cors pour gérer les requêtes Cross-Origin Resource Sharing (CORS)
+import express from "express"; // Import du module Express
+import path from "path"; // Import du module path pour la gestion des chemins de fichiers
+import { fileURLToPath } from "url"; // Import du module url pour la conversion des URL en chemins de fichiers
+import cors from "cors"; // Import du module cors pour gérer les requêtes Cross-Origin Resource Sharing (CORS)
 
 // Récupération du chemin du fichier en cours d'exécution et du répertoire parent
 const filename = fileURLToPath(import.meta.url);
@@ -9,7 +9,7 @@ const dirname = path.dirname(filename);
 
 // Configuration du port et de l'hôte
 const port = 8070;
-const host = '127.0.0.1';
+const host = "127.0.0.1";
 
 // Initialisation de l'application Express
 const app = express();
@@ -42,7 +42,7 @@ app.use(cors());
  * @param {string} path - Chemin du répertoire contenant les fichiers statiques.
  */
 
-app.use(express.static(path.join(dirname, 'public')));
+app.use(express.static(path.join(dirname, "public")));
 
 /**
  * Middleware pour servir l'icône de favicon.
@@ -52,7 +52,10 @@ app.use(express.static(path.join(dirname, 'public')));
  * @param {string} path - Chemin du fichier de l'icône de favicon.
  */
 
-app.use('/favicon.ico', express.static(path.join(dirname, 'public', 'images', 'favicon.png')));
+app.use(
+  "/favicon.ico",
+  express.static(path.join(dirname, "public", "images", "favicon.png"))
+);
 
 /**
  * Route pour la page d'accueil.
@@ -64,8 +67,8 @@ app.use('/favicon.ico', express.static(path.join(dirname, 'public', 'images', 'f
  * @param {function} next - Fonction pour passer à la fonction middleware suivante.
  */
 
-app.get('/', (req, res) => {
-  res.sendFile('index.html', { root: path.join(dirname) }, err => {
+app.get("/", (req, res) => {
+  res.sendFile("index.html", { root: path.join(dirname) }, (err) => {
     if (err) throw new Error(err);
   });
 });
@@ -79,7 +82,7 @@ app.get('/', (req, res) => {
  * @param {Object} res - Objet représentant la réponse HTTP.
  */
 
-app.post('/comment', (req, res) => {
+app.post("/comment", (req, res) => {
   const comment = req.body.message; // Récupération du commentaire à partir du corps de la requête
   res.send(comment); // Envoi du commentaire en réponse
 });
